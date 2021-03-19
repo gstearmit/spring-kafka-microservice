@@ -1,15 +1,8 @@
 version: '2.2'
 services:
-  discovery-service:
-    build: EurekaServer
-    image: srast3/discovery-service
-    restart: always
-    ports:
-      - 8761:8761
-
   config-server:
     build: ConfigServer
-    image: srast3/config-server
+    image: gstearmit/config-server:1.0
     restart: always
     depends_on:
       discovery-service:
@@ -19,7 +12,7 @@ services:
 
   email-service:
     build: EmailService
-    image: srast3/email-service
+    image: gstearmit/email-service:1.0
     restart: always
     depends_on:
       config-server:
@@ -29,10 +22,17 @@ services:
 
   user-service:
     build: UserAccount
-    image: srast3/user-service
+    image: gstearmit/user-service:1.0
     restart: always
     depends_on:
       config-server:
         condition: service_healthy
     ports:
       - 8081:8081
+
+  discovery-service:
+    build: EurekaServer
+    image: gstearmit/discovery-service:1.0
+    restart: always
+    ports:
+      - 8761:8761

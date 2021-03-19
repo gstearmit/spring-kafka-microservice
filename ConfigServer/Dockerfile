@@ -1,5 +1,5 @@
 FROM java:8-jre
-MAINTAINER Shashank Rastogi <shaan.infy@gmail.com>
+MAINTAINER Jack <adv.globalmedia2@gmail.com>
 
 ADD ./target/ConfigServer-0.0.1-SNAPSHOT.jar /app/
 CMD ["java", "-Xmx200m", "-jar", "/app/ConfigServer-0.0.1-SNAPSHOT.jar"]
